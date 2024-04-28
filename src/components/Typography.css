@@ -1,0 +1,43 @@
+.text-title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.text-subtitle {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.text-body {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.text-caption {
+  font-size: 0.75em;
+  color: var(--gray) !important;
+}
+
+.text-dark {
+  color: var(--black);
+}
+
+.text-red {
+  color: var(--red);
+}
+
+.text-blue {
+  color: var(--blue);
+}
+
+.textWeight-regular {
+  font-weight: 400;
+}
+
+.textWeight-semiBold {
+  font-weight: 600;
+}
+
+.textWeight-bold {
+  font-weight: 700;
+}

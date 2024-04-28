@@ -1,6 +1,8 @@
 import React from "react";
 import "./Typography.css";
 
+//TODO : header li tag 추가
+
 const TAGS = {
   title: "h1",
   subtitle: "h2",

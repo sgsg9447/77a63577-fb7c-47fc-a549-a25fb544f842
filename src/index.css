@@ -1,0 +1,15 @@
+@import "./reset.css";
+
+:root {
+  /* Primary colors */
+  --blue: #3c75df;
+  --red: #e45a5a;
+  --yellow: #f5c66a;
+
+  /* Neutral colors */
+  --gray: #999999;
+  --border: #e1e4ee;
+  --black: #1b1d1f;
+  --light-black: #626871;
+  --light-background: #f6f6f6;
+}

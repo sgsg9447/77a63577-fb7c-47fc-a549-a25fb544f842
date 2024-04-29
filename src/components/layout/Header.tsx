@@ -6,9 +6,6 @@ const Header = () => {
       <header className="layout-header-wrapper">
         <ul>
           <li>
-            <Link to="/">LOGO</Link>
-          </li>
-          <li>
             <Link to="/markets">가상자산 시세목록</Link>
           </li>
           <li>

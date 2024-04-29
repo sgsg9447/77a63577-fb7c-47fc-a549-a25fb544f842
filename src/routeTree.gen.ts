@@ -11,24 +11,24 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as MarketsImport } from './routes/markets'
-import { Route as BookmarksImport } from './routes/bookmarks'
 import { Route as IndexImport } from './routes/index'
+import { Route as MarketsIndexImport } from './routes/markets.index'
+import { Route as BookmarksIndexImport } from './routes/bookmarks.index'
 
 // Create/Update Routes
 
-const MarketsRoute = MarketsImport.update({
-  path: '/markets',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const BookmarksRoute = BookmarksImport.update({
-  path: '/bookmarks',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MarketsIndexRoute = MarketsIndexImport.update({
+  path: '/markets/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BookmarksIndexRoute = BookmarksIndexImport.update({
+  path: '/bookmarks/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -40,12 +40,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/bookmarks': {
-      preLoaderRoute: typeof BookmarksImport
+    '/bookmarks/': {
+      preLoaderRoute: typeof BookmarksIndexImport
       parentRoute: typeof rootRoute
     }
-    '/markets': {
-      preLoaderRoute: typeof MarketsImport
+    '/markets/': {
+      preLoaderRoute: typeof MarketsIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -55,8 +55,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  BookmarksRoute,
-  MarketsRoute,
+  BookmarksIndexRoute,
+  MarketsIndexRoute,
 ])
 
 /* prettier-ignore-end */

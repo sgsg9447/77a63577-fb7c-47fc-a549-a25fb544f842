@@ -1,6 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 import axios from "axios";
-import { Currency, PerPage } from "./types";
+import { CoinDetail, Currency, PerPage } from "./types";
 
 //TODO : get<000> return 타입 정의 필요
 
@@ -39,7 +39,11 @@ export const marketCoinsQueryOptions = (
 
 export const getMarketCoinDetail = async (marketCoinId: string) => {
   const reponse = await axios
-    .get(`api/v3/coins/markets/${marketCoinId}`)
+    .get<CoinDetail>(`/api/v3/coins/${marketCoinId}`, {
+      headers: {
+        "x-cg-demo-api-key": import.meta.env.VITE_API_KEY,
+      },
+    })
     .then((r) => r.data)
     .catch((err) => {
       console.error(err);

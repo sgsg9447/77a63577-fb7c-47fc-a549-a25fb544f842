@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import BookmarkIcon from "../assets/BookmarkIcon";
 import { Coin } from "../types";
 import { formatCurrency, formatPercentage } from "../utils";
@@ -39,7 +40,11 @@ const Table = ({ data, currency = "krw" }: TableProps) => {
               <td>
                 <BookmarkIcon />
               </td>
-              <td>{coin.name}</td>
+              <td>
+                <Link to="/markets/$marketId" params={{ marketId: coin.id }}>
+                  {coin.name}
+                </Link>
+              </td>
               <td>{coin.symbol}</td>
               <td>{formatCurrency(coin.current_price, currency)}</td>
               <td className={priceChange1h.className}>

@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as MarketsIndexImport } from './routes/markets.index'
 import { Route as BookmarksIndexImport } from './routes/bookmarks.index'
+import { Route as MarketsMarketIdImport } from './routes/markets.$marketId'
 
 // Create/Update Routes
 
@@ -32,12 +33,21 @@ const BookmarksIndexRoute = BookmarksIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const MarketsMarketIdRoute = MarketsMarketIdImport.update({
+  path: '/markets/$marketId',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/markets/$marketId': {
+      preLoaderRoute: typeof MarketsMarketIdImport
       parentRoute: typeof rootRoute
     }
     '/bookmarks/': {
@@ -55,6 +65,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  MarketsMarketIdRoute,
   BookmarksIndexRoute,
   MarketsIndexRoute,
 ])

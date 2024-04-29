@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import BookmarkIcon from "../assets/BookmarkIcon";
 import { Coin } from "../types";
 import { formatCurrency, formatPercentage } from "../utils";
 import "./Table.css";
+import { Bookmark } from "./Bookmark";
 
 type TableProps = {
   data: Coin[];
@@ -39,7 +39,7 @@ const Table = ({ data, currency = "krw" }: TableProps) => {
           return (
             <tr key={coin.id}>
               <td>
-                <BookmarkIcon />
+                <Bookmark coinId={coin.id} />
               </td>
               <td>
                 <Link

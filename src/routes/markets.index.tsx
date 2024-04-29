@@ -16,6 +16,7 @@ export function MarketsPage() {
   const [currency, setCurrency] = useState<Currency>("krw");
   const [perPage, setPerPage] = useState<PerPage>(50);
   const [viewMode, setViewMode] = useState<ViewMode>("all");
+
   const [page, setPage] = useState(1);
 
   const { data, refetch, isFetching, isLoading } = useQuery(

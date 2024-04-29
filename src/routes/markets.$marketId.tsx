@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { marketCoinDetailQueryOptions } from "../api";
-import BookmarkIcon from "../assets/BookmarkIcon";
 import "../style/markets.css";
+import { Bookmark } from "../components/Bookmark";
 import Loader from "../components/Loader";
 import { Currency } from "../types";
 import { formatCurrency } from "../utils";
@@ -85,7 +85,7 @@ function MarketDetailPage() {
 
       <div className="wrapper">
         <div className="title-wrapper">
-          <BookmarkIcon />
+          <Bookmark coinId={marketId} />
           {data?.image.thumb && (
             <img src={data.image.thumb} alt="Thumb Image" />
           )}

@@ -21,3 +21,13 @@
 .negative {
   color: var(--blue);
 }
+
+.default-select-none {
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  cursor: pointer;
+}

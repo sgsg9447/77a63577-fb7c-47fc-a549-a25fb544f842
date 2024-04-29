@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { marketCoinsQueryOptions } from "../api";
 import Table from "../components/Table";
 import { Coin, Currency, PerPage, ViewMode } from "../types";
+import "../style/markets.css";
 
 export const Route = createFileRoute("/markets/")({
   component: MarketsPage,
@@ -25,7 +26,7 @@ export function MarketsPage() {
       data.forEach((coin: Coin) => newCoinData.set(coin.id, coin));
       setCoinData(newCoinData);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleCurrencyChange = (newCurrency: Currency) => {
@@ -52,32 +53,37 @@ export function MarketsPage() {
     <>
       {coinData && (
         <>
-          <select
-            value={viewMode}
-            onChange={(e) => handleViewModeChange(e.target.value as ViewMode)}
-          >
-            <option value="all">전체 보기</option>
-            <option value="bookmarks">북마크 보기</option>
-          </select>
-          <select
-            value={currency}
-            onChange={(e) => handleCurrencyChange(e.target.value as Currency)}
-          >
-            <option value="krw">KRW</option>
-            <option value="usd">USD</option>
-          </select>
-          <select
-            value={perPage.toString()}
-            onChange={(e) =>
-              handlePerPageChange(Number(e.target.value) as PerPage)
-            }
-          >
-            <option value="10">10개 보기</option>
-            <option value="30">30개 보기</option>
-            <option value="50">50개 보기</option>
-          </select>
+          <div className="select-wrapper">
+            <select
+              className="default-select-none"
+              value={viewMode}
+              onChange={(e) => handleViewModeChange(e.target.value as ViewMode)}
+            >
+              <option value="all">전체 보기 ▵</option>
+              <option value="bookmarks">북마크 보기 ▵</option>
+            </select>
+            <select
+              className="default-select-none"
+              value={currency}
+              onChange={(e) => handleCurrencyChange(e.target.value as Currency)}
+            >
+              <option value="krw">KRW 보기 ▵</option>
+              <option value="usd">USD 보기 ▵</option>
+            </select>
+            <select
+              className="default-select-none"
+              value={perPage.toString()}
+              onChange={(e) =>
+                handlePerPageChange(Number(e.target.value) as PerPage)
+              }
+            >
+              <option value="10">10개 보기 ▵</option>
+              <option value="30">30개 보기 ▵</option>
+              <option value="50">50개 보기 ▵</option>
+            </select>
+          </div>
           <Table data={Array.from(coinData.values())} currency={currency} />
-          <button onClick={handleLoadMore} disabled={isFetching}>
+          <button className="more-road-button" onClick={handleLoadMore} disabled={isFetching}>
             + 더 보기
           </button>
         </>

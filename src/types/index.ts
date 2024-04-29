@@ -12,3 +12,5 @@ export interface Coin {
 export type Currency = "krw" | "usd";
 
 export type ViewMode = "all" | "bookmarks";
+
+export type PerPage = 10 | 30 | 50;

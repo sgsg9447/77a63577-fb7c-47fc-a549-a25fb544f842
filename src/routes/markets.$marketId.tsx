@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { marketCoinDetailQueryOptions } from "../api";
 import BookmarkIcon from "../assets/BookmarkIcon";
 import "../style/markets.css";
+import Loader from "../components/Loader";
 import { Currency } from "../types";
 import { formatCurrency } from "../utils";
 
@@ -14,7 +15,9 @@ export const Route = createFileRoute("/markets/$marketId")({
 function MarketDetailPage() {
   const marketId = Route.useParams().marketId;
   const [currency, setCurrency] = useState<Currency>("krw");
-  const { data } = useSuspenseQuery(marketCoinDetailQueryOptions(marketId));
+  const { data, isLoading } = useSuspenseQuery(
+    marketCoinDetailQueryOptions(marketId)
+  );
   const [showDescription, setShowDescription] = useState(false);
   const [btc, setBtc] = useState("");
   const [krw, setKrw] = useState("");
@@ -78,6 +81,8 @@ function MarketDetailPage() {
 
   return (
     <>
+      {isLoading && <Loader />}
+
       <div className="wrapper">
         <div className="title-wrapper">
           <BookmarkIcon />

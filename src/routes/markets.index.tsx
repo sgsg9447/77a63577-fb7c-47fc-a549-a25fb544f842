@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { marketCoinsQueryOptions } from "../api";
+import Loader from "../components/Loader";
 import Table from "../components/Table";
 import { Coin, Currency, PerPage, ViewMode } from "../types";
 import "../style/markets.css";
@@ -17,7 +18,7 @@ export function MarketsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("all");
   const [page, setPage] = useState(1);
 
-  const { data, refetch, isFetching } = useQuery(
+  const { data, refetch, isFetching, isLoading } = useQuery(
     marketCoinsQueryOptions(currency, perPage, page)
   );
   useEffect(() => {
@@ -51,6 +52,7 @@ export function MarketsPage() {
   };
   return (
     <>
+      {isLoading && <Loader />}
       {coinData && (
         <>
           <div className="select-wrapper">
@@ -83,7 +85,11 @@ export function MarketsPage() {
             </select>
           </div>
           <Table data={Array.from(coinData.values())} currency={currency} />
-          <button className="more-road-button" onClick={handleLoadMore} disabled={isFetching}>
+          <button
+            className="more-road-button"
+            onClick={handleLoadMore}
+            disabled={isFetching}
+          >
             + 더 보기
           </button>
         </>

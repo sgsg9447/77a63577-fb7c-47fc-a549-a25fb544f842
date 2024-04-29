@@ -1,8 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
 import axios from "axios";
-import { CoinDetail, Currency, PerPage } from "./types";
-
-//TODO : get<000> return 타입 정의 필요
+import { Coin, CoinDetail, Currency, PerPage } from "../types";
 
 export const getMarketCoins = async (
   currency: Currency,
@@ -11,7 +9,7 @@ export const getMarketCoins = async (
 ) => {
   const locale = currency === "krw" ? "ko" : "en";
   return axios
-    .get("api/v3/coins/markets", {
+    .get<Coin[]>("api/v3/coins/markets", {
       params: {
         vs_currency: currency,
         per_page: perPage,

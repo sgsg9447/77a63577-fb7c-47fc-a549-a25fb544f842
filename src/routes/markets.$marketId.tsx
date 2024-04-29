@@ -59,7 +59,7 @@ function MarketDetailPage() {
       } else if (krw) {
         // KRW에서 BTC로 변환
         convertedValue = parseFloat(krw) / data.market_data.current_price.krw;
-        setBtc(convertedValue.toFixed(2));
+        setBtc(convertedValue.toFixed(8));
         setKrw("");
       }
     } else {
@@ -71,7 +71,7 @@ function MarketDetailPage() {
       } else if (krw) {
         // USD에서 BTC로 변환
         convertedValue = parseFloat(krw) / data.market_data.current_price.usd;
-        setBtc(convertedValue.toFixed(2));
+        setBtc(convertedValue.toFixed(8));
         setKrw("");
       }
     }

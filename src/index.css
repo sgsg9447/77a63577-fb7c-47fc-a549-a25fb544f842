@@ -13,3 +13,11 @@
   --light-black: #626871;
   --light-background: #f6f6f6;
 }
+
+.positive {
+  color: var(--red);
+}
+
+.negative {
+  color: var(--blue);
+}

@@ -10,31 +10,34 @@ export const Route = createFileRoute("/markets/")({
 });
 
 export function MarketsPage() {
+  const [coinData, setCoinData] = useState<Map<string, Coin>>(() => new Map());
   const [currency, setCurrency] = useState<Currency>("krw");
   const [perPage, setPerPage] = useState<PerPage>(50);
   const [viewMode, setViewMode] = useState<ViewMode>("all");
   const [page, setPage] = useState(1);
-  const [coinData, setCoinData] = useState<Coin[]>([]);
 
   const { data, refetch, isFetching } = useQuery(
     marketCoinsQueryOptions(currency, perPage, page)
   );
   useEffect(() => {
     if (data) {
-      setCoinData((prevData) => [...prevData, ...data]);
+      const newCoinData = new Map(coinData);
+      data.forEach((coin: Coin) => newCoinData.set(coin.id, coin));
+      setCoinData(newCoinData);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleCurrencyChange = (newCurrency: Currency) => {
     setCurrency(newCurrency);
     setPage(1);
-    setCoinData([]);
+    setCoinData(new Map());
     refetch();
   };
   const handlePerPageChange = (newPerPage: PerPage) => {
     setPerPage(newPerPage);
     setPage(1);
-    setCoinData([]);
+    setCoinData(new Map());
     refetch();
   };
 
@@ -73,7 +76,7 @@ export function MarketsPage() {
             <option value="30">30개 보기</option>
             <option value="50">50개 보기</option>
           </select>
-          <Table data={coinData} currency={currency} />
+          <Table data={Array.from(coinData.values())} currency={currency} />
           <button onClick={handleLoadMore} disabled={isFetching}>
             + 더 보기
           </button>
